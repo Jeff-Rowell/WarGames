@@ -1,3 +1,10 @@
+'''
+This script is used to solve natas30 from http://overthewire.org/wargames/natas/natas31.html.
+This is an SQL injection that takes advantage of the quote() SQL function being called, which
+does not work on any data type other than string. Giving our SQLi payload as an array does the
+trick. Full write-up at https://r00tblogger.wordpress.com/2019/01/29/overthewire-natas-wargame/
+'''
+
 import requests
 import re
 

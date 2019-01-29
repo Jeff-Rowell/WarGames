@@ -1,3 +1,14 @@
+'''
+This is a script that solves natas16 from http://overthewire.org/wargames/natas/natas17.html.
+First the script reduces the character set search space by verifying that a character exists
+in the password via command injection with grep. If a char is contained in the password it 
+is stored into used_chars. Once the reduced character set is obtained the script brute-forces 
+the password by continuously running grep on the working password plus the current char being
+processed to test the validity of each character position in the password. Full write-up is at 
+https://r00tblogger.wordpress.com/2019/01/29/overthewire-natas-wargame/
+'''
+
+
 import requests
 import time
 

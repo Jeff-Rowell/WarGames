@@ -1,3 +1,14 @@
+'''
+This is a script that solves natas17 from http://overthewire.org/wargames/natas/natas18.html.
+First the script reduces the character set search space by verifying that a character exists
+in the password via SQL injection. If it is contained in the password it is stored into used_chars. This
+is similar to the brute.py script, only here we make use of the sleep function and run a time-based SQL
+injection to detect whether or not the statement evaluates to true. Once the reduced character set is 
+obtained the script brute-forces the password using SQL injection and verifying a specified amount of time
+has elapsed indicating that the character being processed is correct to test the validity of each character 
+position in the password. Full write-up is at https://r00tblogger.wordpress.com/2019/01/29/overthewire-natas-wargame/
+'''
+
 import requests
 import time
 

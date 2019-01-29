@@ -1,3 +1,9 @@
+'''
+This is a script used to decrypt an ECB mode cipher encryption to solve natas28 
+from http://overthewire.org/wargames/natas/natas29.html. This script does a lot....
+Full write-up can be found at https://r00tblogger.wordpress.com/2019/01/29/overthewire-natas-wargame/.
+'''
+
 import base64
 import requests
 import string

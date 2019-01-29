@@ -1,3 +1,11 @@
+/* 
+ * This is another script used to solve natas26 from http://overthewire.org/wargames/natas/natas27.html.
+ * This script contains a malicious exitMsg that is used when the Logger object is destructed on the 
+ * natas26 web server back-end. This gives RCE allowing to view that password file. This will print
+ * out the cookie that is used to inject into the HTTP POST request using Burp Suite.
+*/
+
+
 <?php
 
     class Logger

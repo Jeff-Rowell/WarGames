@@ -2289,6 +2289,7 @@ num_unigrams = 0
 num_bigrams = 0
 num_trigrams = 0
 
+most_common = "ETAOINSHRDLCUMWFGYPBVKJXQZ"
 
 def analyze_unigrams(string):
     global num_unigrams
@@ -2308,6 +2309,8 @@ def analyze_bigrams(string):
                 if char2 != ' ' and char2 != "\n":
                     num_bigrams += 1
                     bi_grams[char1 + char2] += 1
+            if char2 == '\n':
+                break
 
 
 def analyze_trigrams(string):
@@ -2321,38 +2324,44 @@ def analyze_trigrams(string):
                         if char3 != ' ' and char3 != '\n':
                             num_trigrams += 1
                             tri_grams[char1 + char2 + char3] += 1
+                    if char3 == '\n':
+                        break
 
 
 def generate_report():
     print("[+] Generating report\n\n")
-    print("Letter\t\tFrequency")  # \t\tMost Common")
-    print("=" * 25)
+    print("Letter\t\tFrequency\t\tMost Common")
+    print("=" * 50)
 
     sorted_unigram_alphabet = sorted(uni_grams.items(), key=operator.itemgetter(1))
     if num_unigrams != 0:
+        index = 0
         for i in range(len(sorted_unigram_alphabet) - 1, -1, -1):
             freq = (sorted_unigram_alphabet[i][1] / num_unigrams) * 100
-            print("  " + sorted_unigram_alphabet[i][0] + "\t\t%.03f%%\t\t\t" % freq)
+            print("  " + sorted_unigram_alphabet[i][0] + "\t\t%.03f%%\t\t\t    %s" % (freq, most_common[index]))
+            index += 1
 
-    print("-"*25)
+    print("\n\nLetter\t\tFrequency")
+    print("="*25)
     counter = 0
     sorted_bigram_alphabet = sorted(bi_grams.items(), key=operator.itemgetter(1))
     if num_bigrams != 0:
         for i in range(len(sorted_bigram_alphabet) - 1, -1, -1):
             if counter == 5:  # only display the top 5 bi-grams...
                 break
-            freq = (sorted_bigram_alphabet[i][1] / num_bigrams) * 100
+            freq = (sorted_bigram_alphabet[i][1] / (num_bigrams-1)) * 100
             print("  " + sorted_bigram_alphabet[i][0] + "\t\t%.03f%%\t\t\t" % freq)
             counter += 1
 
-    print("-"*25)
+    print("\n\nLetter\t\tFrequency")
+    print("="*25)
     counter = 0
     sorted_trigram_alphabet = sorted(tri_grams.items(), key=operator.itemgetter(1))
     if num_trigrams != 0:
         for i in range(len(sorted_trigram_alphabet) - 1, -1, -1):
             if counter == 5:  # only display the top 5 tri-grams ...
                 break
-            freq = (sorted_trigram_alphabet[i][1] / num_trigrams) * 100
+            freq = (sorted_trigram_alphabet[i][1] / (num_trigrams-2)) * 100
             print("  " + sorted_trigram_alphabet[i][0] + "\t\t%.03f%%\t\t\t" % freq)
             counter += 1
 

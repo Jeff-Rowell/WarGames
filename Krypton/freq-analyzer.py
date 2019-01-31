@@ -2334,6 +2334,7 @@ def generate_report():
             freq = (sorted_unigram_alphabet[i][1] / num_unigrams) * 100
             print("  " + sorted_unigram_alphabet[i][0] + "\t\t%.03f%%\t\t\t" % freq)
 
+    print("-"*25)
     counter = 0
     sorted_bigram_alphabet = sorted(bi_grams.items(), key=operator.itemgetter(1))
     if num_bigrams != 0:
@@ -2344,6 +2345,7 @@ def generate_report():
             print("  " + sorted_bigram_alphabet[i][0] + "\t\t%.03f%%\t\t\t" % freq)
             counter += 1
 
+    print("-"*25)
     counter = 0
     sorted_trigram_alphabet = sorted(tri_grams.items(), key=operator.itemgetter(1))
     if num_trigrams != 0:
@@ -2427,12 +2429,12 @@ if __name__ == "__main__":
     for line1, line2, line3 in zip(filey1, filey2, filey3):
         string += line1 + "\n\n" + line2 + "\n\n" + line3
 
+    print("[*] Analyzing uni-grams in %s, %s, and %s" % (filey1.name, filey2.name, filey3.name))
     analyze_unigrams(string=string)
-    print("[*] Analyzing uni-grams in %s, %s, and %s" %(filey1.name, filey2.name, filey3.name))
+    print("[*] Analyzing bi-grams in %s, %s, and %s" % (filey1.name, filey2.name, filey3.name))
     analyze_bigrams(string=string)
-    print("[*] Analyzing bi-grams in %s, %s, and %s" %(filey1.name, filey2.name, filey3.name))
-    analyze_trigrams(string=string)
     print("[*] Analyzing tri-grams in %s, %s, and %s" %(filey1.name, filey2.name, filey3.name))
+    analyze_trigrams(string=string)
     generate_report()
 
     filey1.close()
